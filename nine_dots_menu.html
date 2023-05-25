@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9 dots menu</title>
+</head>
+
+<style>
+    *,::before,::after{
+        padding: 0;
+        margin: 0;
+        box-sizing: inherit;
+    }
+    html{
+        font-size: 62.5%;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #353434;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    ion-icon{
+        font-size: 0rem;
+        color: white;
+        transition: .3s;
+    }
+    .container{
+        position: relative;
+        width: 10rem;
+        height: 10rem;
+        background-color: #1d1d1d;
+        border-radius: 2rem;
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: all .3s;
+        transition-delay: .8s;
+    }
+    .container.active{
+        width: 20rem;
+        height: 20rem;
+        transition-delay: 0s;
+    }
+    .container .item{
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translate(calc(1.7rem * var(--x)), calc(1.7rem * var(--y)));
+        transition: all .3s;
+        transition-delay: calc(.1s * var(--i));
+    }
+    .container .item:hover ion-icon{
+        color: rgb(1, 176, 1);
+        filter: drop-shadow(0 0 .5rem rgb(1, 176, 1))
+                drop-shadow(0 0 1rem rgb(1, 176, 1));
+    }
+    .container.active .item{
+        transform: translate(calc(6rem * var(--x)), calc(6rem * var(--y)));
+        width: 4rem;
+        height: 4rem;
+        background-color: #363535;
+    }
+    .container.active ion-icon{
+        font-size: 2.5rem;
+    }
+
+</style>
+
+<body>
+
+    <div class="container">
+        <span class="item item-1" style="--i:0; --x:-1; --y:0">
+            <ion-icon name="moon-outline"></ion-icon>
+        </span>
+        <span class="item item-2" style="--i:1; --x:1; --y:0">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+        </span>
+        <span class="item item-3" style="--i:2; --x:0; --y:-1">
+            <ion-icon name="time-outline"></ion-icon>
+        </span>
+        <span class="item item-4" style="--i:3; --x:0; --y:1">
+            <ion-icon name="camera-outline"></ion-icon>
+        </span>
+        <span class="item item-5" style="--i:4; --x:1; --y:1">
+            <ion-icon name="notifications-outline"></ion-icon>
+        </span>
+        <span class="item item-6" style="--i:5; --x:-1; --y:-1">
+            <ion-icon name="diamond-outline"></ion-icon>
+        </span>
+        <span class="item item-7" style="--i:6; --x:-1; --y:1">
+            <ion-icon name="water-outline"></ion-icon>
+        </span>
+        <span class="item item-8" style="--i:7; --x:1; --y:-1">
+            <ion-icon name="alarm-outline"></ion-icon>
+        </span>
+        <span class="item item-9" style="--i:8; --x:0; --y:0">
+            <ion-icon name="game-controller-outline"></ion-icon>
+        </span>
+    </div>
+
+    <script>
+        let container = document.querySelector('.container');
+        let items = document.querySelectorAll('.item');
+
+        container.addEventListener('click', ()=>{
+            container.classList.toggle('active');
+        })
+
+        window.onclick = function(e){
+            if(e.target.closest('.container'))
+                return;
+            container.classList.remove('active');
+        }
+    </script>
+    
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
